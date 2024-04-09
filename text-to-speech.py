@@ -24,19 +24,19 @@ class Application(tk.Tk):
         self.button_frame.pack(padx=10, pady=5, anchor='w')
 
         # play button
-        self.tts_btn = tk.Button(self.button_frame, text="play", command=self.generate_and_play_audio, bg="#555555", fg="white")
+        self.tts_btn = tk.Button(self.button_frame, text="Play", command=self.generate_and_play_audio, bg="#555555", fg="white")
         self.tts_btn.pack(side=tk.LEFT, padx=(0, 10))
         
         # pause button
-        self.pause_btn = tk.Button(self.button_frame, text="pause", command=self.pause_audio, bg="#555555", fg="white")
+        self.pause_btn = tk.Button(self.button_frame, text="Pause", command=self.pause_audio, bg="#555555", fg="white")
         self.pause_btn.pack(side=tk.LEFT, padx=(0, 10))
         
         # stop button
-        self.stop_btn = tk.Button(self.button_frame, text="stop", command=self.stop_audio, bg="#555555", fg="white")
+        self.stop_btn = tk.Button(self.button_frame, text="Stop", command=self.stop_audio, bg="#555555", fg="white")
         self.stop_btn.pack(side=tk.LEFT)
 
         # openai api key
-        self.api_key_label = tk.Label(self, text="openai api key:", bg='#333333', fg="white")
+        self.api_key_label = tk.Label(self, text="OpenAI API key:", bg='#333333', fg="white")
         self.api_key_label.pack(padx=10, pady=5, anchor='w')
         
         self.api_key_entry = tk.Entry(self, width=60, bg="#4F4F4F", fg="white", insertbackground='white')
@@ -52,7 +52,7 @@ class Application(tk.Tk):
             text = self.text_field.get(1.0, "end-1c")
             api_key = self.api_key_entry.get()
             if not api_key:
-                messagebox.showerror("error", "please enter an openai api key!")
+                messagebox.showerror("Error", "Please enter a valid OpenAI API key!")
                 return
 
             client = OpenAI(api_key=api_key)
@@ -70,7 +70,7 @@ class Application(tk.Tk):
                 
                 self.play_audio()
             except Exception as e:
-                messagebox.showerror("error", f"error reading the text: {e}")
+                messagebox.showerror("Error", f"An error occured reading the text: {e}")
 
     def play_tts_audio(self):
         if self.audio_file_path:
